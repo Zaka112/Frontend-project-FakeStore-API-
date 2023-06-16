@@ -12,18 +12,29 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../../redux/slice/products";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { cartListActions } from "../../redux/slice/cart";
+import { RootState } from "../../redux/store";
 
 type Prop = { product: Product };
 
 export default function ProductItems({ product }: Prop) {
+  const favorite = useSelector((state: RootState) => state.products.favorite);
+  const isFavorite = favorite.filter((favorite) => favorite.id === product.id);
   const dispatch = useDispatch();
-  function addFavorite(product: Product) {
-    dispatch(productActions.addFavoriteProducts(product));
+
+  function dealFavoriteProduct(product: Product) {
+    !favorite.includes(product)
+      ? dispatch(productActions.addFavoriteProducts(product))
+      : dispatch(productActions.deleteFavoriteProducts(product));
   }
+
+  // function addFavorite(product: Product) {
+
+  //   dispatch(productActions.addFavoriteProducts(product));
+  // }
   function addToCart(product: Product) {
     dispatch(cartListActions.addToCart(product));
   }
@@ -45,7 +56,6 @@ export default function ProductItems({ product }: Prop) {
         <Typography gutterBottom variant="h5" component="div">
           {product.title}
         </Typography>
-
         <Typography gutterBottom variant="body2" component="div">
           Price: {product.price} $
         </Typography>
@@ -57,20 +67,27 @@ export default function ProductItems({ product }: Prop) {
           <Button size="small" style={{ color: "black" }}>
             Learn More
           </Button>
-        </Link>
-       
-          {" "}
-          <Button size="small" style={{ color: "black" }} onClick={()=> addToCart(product)}>
-            Add to cart
-          </Button>
-       
+        </Link>{" "}
+        <Button
+          size="small"
+          style={{ color: "black" }}
+          onClick={() => addToCart(product)}
+        >
+          Add to cart
+        </Button>
       </CardContent>
 
       <IconButton
         aria-label="add to favorites"
-        onClick={() => addFavorite(product)}
+        onClick={() => dealFavoriteProduct(product)}
       >
-        <FavoriteIcon />
+        {!favorite.includes(product) ? (
+          <FavoriteIcon />
+        ) : (
+          <div>
+            <FavoriteIcon sx={{ color: "red" }} />
+          </div>
+        )}
       </IconButton>
     </Card>
   );
