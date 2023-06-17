@@ -1,42 +1,89 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { productActions } from '../../redux/slice/products';
-import { Product } from '../../types/types';
-import { Box, Button, Paper, Typography } from '@mui/material';
+import React from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Product } from "../../types/types";
+import {
+  Box,
+  Button,
+  IconButton,
+  
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+
+import { RootState } from "../../redux/store";
+import { productActions } from "../../redux/slice/products";
+import background from "../../assets/bg.svg";
 
 export default function FavoriteProducts() {
   const favoriteProducts = useSelector(
     (state: RootState) => state.products.favorite
   );
-  console.log(favoriteProducts)
+
   const dispatch = useDispatch();
   function deleteFavorite(favProduct: Product) {
     dispatch(productActions.deleteFavoriteProducts(favProduct));
   }
   return (
-    <Paper>
+    <Paper
+      sx={{ background: `url(${background})`, minHeight: 600, marginTop: 10 }}
+    >
       <Typography variant="h2" component="h1">
         Favorite List
       </Typography>
       {favoriteProducts.length === 0 ? (
         <Typography>Empty</Typography>
       ) : (
-        favoriteProducts.map((favProduct) =>
-         {
+        favoriteProducts.map((favProduct) => {
           return (
-            <Box key={favProduct.id}>
-              {favProduct.title}
-              <Button
-                sx={{ color: "red" }}
-                onClick={() => deleteFavorite(favProduct)}
+             <Box
+              key={favProduct.id}
+              sx={{
+                display: "flex",
+                gap: "2rem",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+             <Tooltip title="Product Details" arrow placement="left">
+        <Link to={`/products/productdetail/${favProduct.id}`}>
+            <img src={favProduct.images[0]} width={70} alt="" />
+            </Link></Tooltip>
+              <Box
+                sx={{
+                  minWidth: 345,
+                  display: "flex",
+                }}
               >
-                Remove favorite
-              </Button>
+                <Typography>
+                 
+                  {favProduct.title}: ${favProduct.price}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+
+                  alignItems: "center",
+                }}
+              >
+                <IconButton
+                  onClick={() => deleteFavorite(favProduct)}
+                  sx={{ color: "red" }}
+                >
+                  <Tooltip title="Delete" arrow>
+                    <DeleteForeverIcon />
+                  </Tooltip>
+                </IconButton>
+              </Box>
             </Box>
           );
         })
       )}
     </Paper>
-  )
+  );
 }

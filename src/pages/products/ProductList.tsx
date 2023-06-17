@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Grid, Paper, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  Grid,
+  Pagination,
+  Paper,
+  TablePagination,
+  Typography,
+} from "@mui/material";
 
 import { AppDispatch, RootState } from "../../redux/store";
 import { getProductsData } from "../../redux/thunk/products";
@@ -10,47 +17,73 @@ import background from "../../assets/bg.svg";
 import SearchForm from "../../components/SearchForm";
 
 export default function ProductList() {
+  const [page, setPage] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(12);
+
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: RootState) => state.products.products);
-  const isLoading = useSelector((state: RootState) => state.products.isLoading);
-  console.log(products);
   useEffect(() => {
     dispatch(getProductsData());
   }, [dispatch]);
+
+  const products = useSelector((state: RootState) => state.products.products);
+  const isLoading = useSelector((state: RootState) => state.products.isLoading);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value));
+    setPage(0);
+  };
 
   const searchedText = useSelector((state: RootState) => state.search.value);
   const searchedProduct = products.filter((product) =>
     product.title.toLowerCase().includes(searchedText.toLowerCase())
   );
+
   return isLoading ? (
-    <Paper>
-      <CircularProgress />
+    <Paper sx={{marginTop:10}}>
+      <CircularProgress sx={{fontSize:300}} />
     </Paper>
   ) : (
     <Paper
-      sx={{ background: `url(${background})`, backgroundRepeat: "repeat" }}
+      sx={{ background: `url(${background})`, backgroundRepeat: "repeat", marginTop:10 }}
     >
       <Typography variant="h3" component="h3">
-        {" "}
-        ProductList <SearchForm />
+        Products
       </Typography>
+      <SearchForm />
       <Grid
         container
         sx={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          margin: 10,
+         
         }}
       >
         {searchedProduct.length === 0 ? (
-          <Typography>Empty</Typography>
+          <Typography sx={{ color: "error", textAlign: "center" }}>
+            {" "}
+            Sorry, this product is not in our stock
+          </Typography>
         ) : (
           searchedProduct.map((product) => {
             return <ProductItem product={product} key={product.id} />;
           })
         )}
       </Grid>
+      <TablePagination
+        rowsPerPage={rowsPerPage}
+        page={page}
+        count={searchedProduct.length}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        component="div"
+      />
     </Paper>
   );
 }
