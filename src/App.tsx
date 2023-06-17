@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-import ProductList from "./pages/products/ProductList";
 import { Route, Routes } from "react-router-dom";
+
+import ProductList from "./pages/products/ProductList";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/products/ProductDetail";

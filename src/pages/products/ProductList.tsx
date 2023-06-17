@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   CircularProgress,
   Grid,
-  Pagination,
   Paper,
   TablePagination,
   Typography,
@@ -87,3 +86,4 @@ export default function ProductList() {
     </Paper>
   );
 }
+

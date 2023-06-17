@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Product } from "../../types/types";
 
-type InitialState = { product: Product; isLoading: boolean };
+export type InitialState = { product: Product; isLoading: boolean };
 
-const initialState: InitialState = {
-  product: {id: 0,
+export const initialState: InitialState = {
+  product: {
+    id: 0,
     title: "",
     price: 0,
     description: "",
@@ -18,7 +19,8 @@ const initialState: InitialState = {
       image: "",
       creationAt: "",
       updatedAt: "",
-    },},
+    },
+  },
   isLoading: true,
 };
 

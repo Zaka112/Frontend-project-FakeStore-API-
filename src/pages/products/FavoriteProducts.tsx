@@ -3,15 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Product } from "../../types/types";
-import {
-  Box,
-  Button,
-  IconButton,
-  
-  Paper,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../../redux/store";
@@ -39,7 +31,7 @@ export default function FavoriteProducts() {
       ) : (
         favoriteProducts.map((favProduct) => {
           return (
-             <Box
+            <Box
               key={favProduct.id}
               sx={{
                 display: "flex",
@@ -48,10 +40,11 @@ export default function FavoriteProducts() {
                 alignItems: "center",
               }}
             >
-             <Tooltip title="Product Details" arrow placement="left">
-        <Link to={`/products/productdetail/${favProduct.id}`}>
-            <img src={favProduct.images[0]} width={70} alt="" />
-            </Link></Tooltip>
+              <Tooltip title="Product Details" arrow placement="left">
+                <Link to={`/products/productdetail/${favProduct.id}`}>
+                  <img src={favProduct.images[0]} width={70} alt="" />
+                </Link>
+              </Tooltip>
               <Box
                 sx={{
                   minWidth: 345,
@@ -59,7 +52,6 @@ export default function FavoriteProducts() {
                 }}
               >
                 <Typography>
-                 
                   {favProduct.title}: ${favProduct.price}
                 </Typography>
               </Box>
