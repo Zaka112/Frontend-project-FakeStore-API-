@@ -16,7 +16,8 @@ export default function FavoriteProducts() {
   );
 
   const dispatch = useDispatch();
-  function deleteFavorite(favProduct: Product) {
+
+  function deleteFavorite(favProduct: Product):void {
     dispatch(productActions.deleteFavoriteProducts(favProduct));
   }
   return (

@@ -6,7 +6,12 @@ import cartReducer from "./slice/cart";
 import searchReducer from "./slice/search";
 
 export const store = configureStore({
-  reducer: { products: productReducer, productDetail: productDetailReducer,search: searchReducer, cartList:cartReducer },
+  reducer: {
+    products: productReducer,
+    productDetail: productDetailReducer,
+    search: searchReducer,
+    cartList: cartReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
