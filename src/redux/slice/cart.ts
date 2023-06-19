@@ -1,36 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Cart } from "../../types/types";
+import { Cart, Product } from "../../types/types";
 import CartItems from "../../pages/cart/CartItems";
 
 type InitialState = {
-  cartItems: Cart[];
+  cartItems: Cart[] ;
 };
 
 export const initialState: InitialState = {
-  cartItems: [],
+  cartItems: [] ,
 
-  //initial state for counter?
+ 
 };
 
 const cartSlice = createSlice({
   name: "cartList",
   initialState,
   reducers: {
-    addToCart: (state, action): void => {
+    addToCart: (state, action: PayloadAction<Product>): void => {
       const isIncluded = state.cartItems.some(
         (cartItem) => cartItem.id === action.payload.id
-      );
-
+      )
       if (!isIncluded) {
-        state.cartItems.push(action.payload);
+        state.cartItems.push({ ...action.payload, counter: 1 })
       }
     },
     removeFromCart: (state, action: PayloadAction<Cart>) => {
-      const result = state.cartItems.filter(
+      const arrayAfterRemoving = state.cartItems.filter(
         (item) => item.id !== action.payload.id
       );
-      state.cartItems = result;
+      state.cartItems = arrayAfterRemoving;
     },
 
     increaseQuantity: (state, action: PayloadAction<Cart>) => {
