@@ -1,40 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import {BrowserRouter} from 'react-router-dom';
-import { Provider } from 'react-redux';
-
-import { ToastContainer} from "react-toastify";
-import { ThemeProvider, createTheme } from '@mui/material';
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import { store } from '../src/redux/store';
+import { store } from "../src/redux/store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
-
-const theme = createTheme({
-  typography: {
-    fontFamily: ["Nunito", "sen-serif"].join(","),
-  },
-  palette: {
-    primary: {
-      main: "#ccc",
-    },
-  },
-});
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <ThemeProvider theme={theme}>
-    <Provider store= {store}>
-    <App /></Provider></ThemeProvider></BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
     <ToastContainer />
   </React.StrictMode>
 );

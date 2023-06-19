@@ -2,13 +2,19 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Product } from "../../types/types";
-import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { RootState } from "../../redux/store";
 import { productActions } from "../../redux/slice/products";
-import background from "../../assets/bg.svg";
+import { Product } from "../../types/types";
 
 export default function FavoriteProducts() {
   const favoriteProducts = useSelector(
@@ -17,18 +23,21 @@ export default function FavoriteProducts() {
 
   const dispatch = useDispatch();
 
-  function deleteFavorite(favProduct: Product):void {
+  function deleteFavorite(favProduct: Product): void {
     dispatch(productActions.deleteFavoriteProducts(favProduct));
   }
   return (
-    <Paper
-      sx={{ background: `url(${background})`, minHeight: 600, marginTop: 10 }}
-    >
+    <Paper sx={{ minHeight: 600, marginTop: 10 }}>
       <Typography variant="h2" component="h1">
-        Favorite List
+        Your Favorite Choices
       </Typography>
       {favoriteProducts.length === 0 ? (
-        <Typography>Empty</Typography>
+        <Typography sx={{ color: "inherit" }}>
+          List of Favorite Choices is empty.
+          <Link to="/productlist" style={{ color: "inherit" }}>
+            <Button>Bring some in!</Button>{" "}
+          </Link>
+        </Typography>
       ) : (
         favoriteProducts.map((favProduct) => {
           return (

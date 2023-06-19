@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CircularProgress,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { CircularProgress, Grid, Paper, Typography } from "@mui/material";
 
 import { AppDispatch, RootState } from "../../redux/store";
 import { getProductsData } from "../../redux/thunk/products";
 import ProductItem from "../products/ProductItems";
-import background from "../../assets/bg.svg";
 import SearchForm from "../../components/SearchForm";
 
 export default function ProductList() {
- 
+  
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getProductsData());
@@ -36,13 +30,12 @@ export default function ProductList() {
   ) : (
     <Paper
       sx={{
-        background: `url(${background})`,
         backgroundRepeat: "repeat",
         marginTop: 10,
       }}
     >
       <Typography variant="h3" component="h3">
-        Products
+        Don't Regret - Just BuY !T
       </Typography>
       <SearchForm />
       <Grid
@@ -51,11 +44,12 @@ export default function ProductList() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
+          backgroundColor:"white"
+          
         }}
       >
         {searchedProduct.length === 0 ? (
           <Typography sx={{ color: "error", textAlign: "center" }}>
-            {" "}
             Sorry, this product is not in our stock.
           </Typography>
         ) : (

@@ -9,20 +9,30 @@ import {
   Tooltip,
   Toolbar,
   Typography,
+  Button,
+  Paper,
+  Switch,
 } from "@mui/material/";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import InfoIcon from "@mui/icons-material/Info";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InventoryIcon from "@mui/icons-material/Inventory";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-import logo from "../assets/logo.png";
-import logo2 from "../assets/logo2.png";
-import logo1 from "../assets/logoboth.png";
+import logoLight from "../assets/logoboth.png";
+import logoDark from "../assets/logo-dark.png";
 import { RootState } from "../redux/store";
+import switchThemeActions from "../redux/slice/theme";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+
+  function toggleThemeHandler() {
+    dispatch(switchThemeActions.toggleTheme());
+  }
   const favoriteItems = useSelector(
     (state: RootState) => state.products.favorite
   );
@@ -30,24 +40,29 @@ export default function NavBar() {
   let favoriteItemsCount, cartItemsCount;
   favoriteItemsCount = favoriteItems.length;
   cartItemsCount = cartItems.length;
+  const themeMode = useSelector((state: RootState) => state.theme.theme);
   return (
-    <Box>
-      <AppBar >
+    <Paper>
+      <AppBar>
         <Toolbar>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <Typography variant="h4" component="div" sx={{ color: "blue" }}>
+          <Link to="/" style={{  color: "inherit" }}>
+            <Typography variant="h4" component="div">
               <Tooltip title="Go to Home" arrow placement="right-start">
-                <span>
-                 
-                  <img src={logo1} width={50} alt="Logo" />
-                  {/* <img src={logo2} width={50} alt="Logo" /> */}
-                </span>
+              <img src={themeMode==="dark"? logoLight: logoDark} width={50} alt="Logo" />
               </Tooltip>
             </Typography>
           </Link>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={() => toggleThemeHandler()}
+            color="inherit"
+          >
+            {themeMode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <IconButton size="large" aria-label="home" color="inherit">
                 <Tooltip title="Home" arrow>
                   <HomeIcon />
@@ -56,7 +71,7 @@ export default function NavBar() {
             </Link>
             <Link
               to="/productlist"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <IconButton
                 size="large"
@@ -70,7 +85,7 @@ export default function NavBar() {
             </Link>
             <Link
               to="/favorite"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <IconButton
                 size="large"
@@ -86,7 +101,7 @@ export default function NavBar() {
             </Link>
             <Link
               to="/cartlist"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <IconButton
                 size="large"
@@ -102,7 +117,7 @@ export default function NavBar() {
             </Link>
             <Link
               to="/about"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <IconButton size="large" aria-label="" color="inherit">
                 <Tooltip title="About" arrow>
@@ -113,6 +128,6 @@ export default function NavBar() {
           </Box>
         </Toolbar>
       </AppBar>
-    </Box>
+    </Paper>
   );
 }

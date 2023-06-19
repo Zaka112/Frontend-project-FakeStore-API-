@@ -1,13 +1,8 @@
 import React from "react";
 
 import { Paper, Typography } from "@mui/material";
-
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-
-import background from "../assets/bg.svg";
-import logo2 from "../assets/logo2.png";
-
 
 export default function Home() {
   return (

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  text-decoration: none;
 }
   .footer
   {
@@ -22,6 +23,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin:40px 0;
+    text-decoration: none;
   }
   .footer-links Link
   {

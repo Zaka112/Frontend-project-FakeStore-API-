@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 export default function Footer() {
   return (
-    <div>
+    <Paper >
       <div className="footer">
         <div className="box-1">
           <div>
@@ -14,7 +14,7 @@ export default function Footer() {
               <Link to="#">
                 <Typography>Help Center</Typography>
               </Link>
-              <Link to="#">Paid with Mobile</Link>
+             
               <Link to="#">Status</Link>
               <Link to="#">Contact Support</Link>
             </div>
@@ -37,7 +37,7 @@ export default function Footer() {
             <div className="footer-links">
               <Link to="#">Shop</Link>
               <Link to="#">Portfolio</Link>
-              <Link to="#">Blog</Link>
+              
             </div>
           </div>
         </div>
@@ -45,14 +45,13 @@ export default function Footer() {
           <div>
             <h4>Get to Know us</h4>
             <div className="footer-links">
-              <Link to="#">Corporate</Link>
-              <Link to="#">Agency</Link>
+            
               <Link to="#">eCommerce</Link>
               <Link to="#">Personal</Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Paper>
   );
 }

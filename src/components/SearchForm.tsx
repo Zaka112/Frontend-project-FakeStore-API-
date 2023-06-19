@@ -11,8 +11,8 @@ export default function SearchForm() {
     dispatch(searchActions.searchProduct(event.target.value));
   }
   return (
-    <div>
-      <form action="">
+    <Paper>
+      <form>
         <TextField
           id="standard-basic"
           label="Search"
@@ -21,6 +21,6 @@ export default function SearchForm() {
           onChange={findProduct}
         />
       </form>
-    </div>
+    </Paper>
   );
 }
