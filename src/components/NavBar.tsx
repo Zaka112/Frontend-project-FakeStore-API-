@@ -9,9 +9,7 @@ import {
   Tooltip,
   Toolbar,
   Typography,
-  Button,
   Paper,
-  Switch,
 } from "@mui/material/";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import InfoIcon from "@mui/icons-material/Info";
@@ -45,10 +43,14 @@ export default function NavBar() {
     <Paper>
       <AppBar>
         <Toolbar>
-          <Link to="/" style={{  color: "inherit" }}>
+          <Link to="/" style={{ color: "inherit" }}>
             <Typography variant="h4" component="div">
               <Tooltip title="Go to Home" arrow placement="right-start">
-              <img src={themeMode==="dark"? logoLight: logoDark} width={50} alt="Logo" />
+                <img
+                  src={themeMode === "dark" ? logoLight : logoDark}
+                  width={50}
+                  alt="Logo"
+                />
               </Tooltip>
             </Typography>
           </Link>
