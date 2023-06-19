@@ -89,7 +89,7 @@ export default function ProductDetail() {
  
   useEffect(() => {
     dispatchApp(getProductDetailData(productDetailURL));
-  }, [productDetailURL]);
+  }, [dispatchApp,productDetailURL]);
 
   if (isLoading) {
     return (

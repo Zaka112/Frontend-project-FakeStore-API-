@@ -12,7 +12,7 @@ export const store = configureStore({
     productDetail: productDetailReducer,
     search: searchReducer,
     cartList: cartReducer,
-    theme: themeReducer
+    theme: themeReducer,
   },
 });
 
