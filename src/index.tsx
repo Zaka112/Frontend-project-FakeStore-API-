@@ -7,8 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { store } from '../src/redux/store';
+import { ToastContainer} from "react-toastify";
 import { ThemeProvider, createTheme } from '@mui/material';
+import 'react-toastify/dist/ReactToastify.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import { store } from '../src/redux/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,6 +35,7 @@ root.render(
     <ThemeProvider theme={theme}>
     <Provider store= {store}>
     <App /></Provider></ThemeProvider></BrowserRouter>
+    <ToastContainer />
   </React.StrictMode>
 );
 

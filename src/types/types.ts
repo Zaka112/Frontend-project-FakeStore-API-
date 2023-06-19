@@ -14,3 +14,6 @@ export type Product = {
     updatedAt: string;
   };
 };
+export type Cart = Product & {
+  counter: number;
+};

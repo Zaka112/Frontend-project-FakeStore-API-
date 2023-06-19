@@ -36,7 +36,7 @@ export default function ProductItems({ product }: Prop) {
     (favoriteItem) => favoriteItem.id === product.id
   );
 
-  function handelFavoriteProductIcon(product: Product) {
+  function handelFavoriteProductIcon(product: Product):void {
     if (!isFavorite) {
       dispatch(productActions.addFavoriteProducts(product));
       toast.success(`${product.title} has been added to favorite list`, {
@@ -64,7 +64,7 @@ export default function ProductItems({ product }: Prop) {
     }
   }
 
-  function addToCart(product: Product) {
+  function addToCart(product: Product):void {
     if (!isInCart) {dispatch(cartListActions.addToCart(product));
       toast.success(`${product.title} successfully added to the cart`, {
         position: "top-left",
