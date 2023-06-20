@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import ProductList from "./pages/products/ProductList";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
+import About from "./pages/About";
 import ProductDetail from "./pages/products/ProductDetail";
 import FavoriteProducts from "./pages/products/FavoriteProducts";
 import CartList from "./pages/cart/CartList";
@@ -31,7 +32,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Paper className="App" style={{ background: `url(${background})` }}>
-        <NavBar />
+        <NavBar themeMode={themeMode} />
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -42,6 +43,7 @@ function App() {
             element={<ProductDetail />}
           />
           <Route path="/cartlist" element={<CartList />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </Paper>

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton  from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { Box, Button, CircularProgress, Paper } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -18,9 +18,10 @@ import background from "../../assets/bg.svg";
 import { cartListActions } from "../../redux/slice/cart";
 import { productActions } from "../../redux/slice/products";
 
-
 export default function ProductDetail() {
+
   const { id } = useParams<{ id: string }>();
+  
   const productDetail = useSelector(
     (state: RootState) => state.productDetail.product
   );
@@ -86,10 +87,10 @@ export default function ProductDetail() {
       });
     }
   }
- 
+
   useEffect(() => {
     dispatchApp(getProductDetailData(productDetailURL));
-  }, [dispatchApp,productDetailURL]);
+  }, [dispatchApp, productDetailURL]);
 
   if (isLoading) {
     return (
@@ -125,7 +126,6 @@ export default function ProductDetail() {
               <Typography gutterBottom variant="h5" component="div">
                 {productDetail.title}
               </Typography>
-
               <Typography gutterBottom variant="body2" component="div">
                 Price: {productDetail.price} $
               </Typography>
@@ -133,7 +133,6 @@ export default function ProductDetail() {
                 {productDetail.title} belongs to {productDetail.category.name}{" "}
                 category.
               </Typography>
-
               <Button
                 size="small"
                 style={{ color: "inherit" }}
@@ -141,6 +140,12 @@ export default function ProductDetail() {
               >
                 Add to cart
               </Button>
+              ||
+              <Link to="/productlist" style={{ color: "inherit" }}>
+                <Button size="small" style={{ color: "inherit" }}>
+                  Back to shop
+                </Button>
+              </Link>
             </CardContent>
 
             <IconButton

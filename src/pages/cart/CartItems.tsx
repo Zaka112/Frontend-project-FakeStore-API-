@@ -11,6 +11,7 @@ import { cartListActions } from "../../redux/slice/cart";
 import { Cart } from "../../types/types";
 
 type Prop = { cartItem: Cart };
+
 export default function CartItems({ cartItem }: Prop) {
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ export default function CartItems({ cartItem }: Prop) {
       >
         <Tooltip title="Product Details" arrow placement="left-start">
           <Link to={`/products/productdetail/${cartItem.id}`}>
-            <img src={cartItem.images[0]} width={70} alt="" />
+            <img src={cartItem.images[0]} width={70} alt={cartItem.title} />
           </Link>
         </Tooltip>
         <Box

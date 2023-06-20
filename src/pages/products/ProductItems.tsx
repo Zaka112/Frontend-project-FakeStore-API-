@@ -22,16 +22,19 @@ import { Product } from "../../types/types";
 type Prop = { product: Product };
 
 export default function ProductItems({ product }: Prop) {
-  const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
 
-  const isInCart = cartItems.some((cartItem) => cartItem.id === product.id);
-  const dispatch = useDispatch();
-  const favoriteProducts = useSelector(
+  const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
+    const favoriteProducts = useSelector(
     (state: RootState) => state.products.favorite
   );
+   
+  const isInCart = cartItems.some((cartItem) => cartItem.id === product.id);
+  
   const isFavorite = favoriteProducts.some(
     (favoriteItem) => favoriteItem.id === product.id
   );
+
+  const dispatch = useDispatch();
 
   function handelFavoriteProductIcon(product: Product): void {
     if (!isFavorite) {
@@ -86,7 +89,7 @@ export default function ProductItems({ product }: Prop) {
           {" "}
           <CardMedia
             component="img"
-            alt="green iguana"
+            alt={product.title}
             height="140"
             image={product.images[0]}
           />

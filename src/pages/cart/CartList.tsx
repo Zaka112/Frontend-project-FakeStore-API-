@@ -11,7 +11,9 @@ import { cartListActions } from "../../redux/slice/cart";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cartList.cartItems);
+
   const dispatch = useDispatch();
+
   function checkOut() {
     dispatch(cartListActions.checkOut());
   }

@@ -32,11 +32,12 @@ export default function FavoriteProducts() {
         Your Favorite Choices
       </Typography>
       {favoriteProducts.length === 0 ? (
-        <Typography sx={{ color: "inherit" }}>
+        <Typography variant="h4" component="div">
           List of Favorite Choices is empty.
-          <Link to="/productlist" style={{ color: "inherit" }}>
+          <Tooltip title="Go To Shop" arrow placement="right">
+            <Link to="/productlist">
             <Button>Bring some in!</Button>{" "}
-          </Link>
+          </Link></Tooltip>
         </Typography>
       ) : (
         favoriteProducts.map((favProduct) => {
@@ -52,7 +53,11 @@ export default function FavoriteProducts() {
             >
               <Tooltip title="Product Details" arrow placement="left">
                 <Link to={`/products/productdetail/${favProduct.id}`}>
-                  <img src={favProduct.images[0]} width={70} alt="" />
+                  <img
+                    src={favProduct.images[0]}
+                    width={70}
+                    alt={favProduct.title}
+                  />
                 </Link>
               </Tooltip>
               <Box

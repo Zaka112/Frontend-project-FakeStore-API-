@@ -20,12 +20,13 @@ import { useDispatch, useSelector } from "react-redux";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-import logoLight from "../assets/logoboth.png";
+import logoLight from "../assets/logo-light.png";
 import logoDark from "../assets/logo-dark.png";
 import { RootState } from "../redux/store";
 import switchThemeActions from "../redux/slice/theme";
 
-export default function NavBar() {
+type Props ={themeMode: "light" | "dark"}
+export default function NavBar( {themeMode}:Props) {
   const dispatch = useDispatch();
 
   function toggleThemeHandler() {
@@ -35,10 +36,11 @@ export default function NavBar() {
     (state: RootState) => state.products.favorite
   );
   const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
+
   let favoriteItemsCount, cartItemsCount;
   favoriteItemsCount = favoriteItems.length;
   cartItemsCount = cartItems.length;
-  const themeMode = useSelector((state: RootState) => state.theme.theme);
+  
   return (
     <Paper>
       <AppBar>
