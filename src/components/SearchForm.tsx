@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Paper, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -6,9 +6,11 @@ import { useDispatch } from "react-redux";
 import { searchActions } from "../redux/slice/search";
 
 export default function SearchForm() {
+  const [userInput, setUserInput] = useState("");
   const dispatch = useDispatch();
   function findProduct(event: React.ChangeEvent<HTMLInputElement>) {
-    dispatch(searchActions.searchProduct(event.target.value));
+    setUserInput(event.target.value);
+    dispatch(searchActions.searchProduct(userInput));
   }
   return (
     <Paper>

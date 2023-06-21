@@ -19,7 +19,6 @@ import { cartListActions } from "../../redux/slice/cart";
 import { productActions } from "../../redux/slice/products";
 
 export default function ProductDetail() {
-  
   const { id } = useParams<{ id: string }>();
 
   const productDetail = useSelector(
@@ -41,11 +40,11 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
 
   const isFavorite = favoriteProducts.some(
-    (favoriteItem) => favoriteItem.id === productDetail.id
+    (favoriteItem) => favoriteItem.id === productDetail?.id
   );
 
   const isInCart = cartItems.some(
-    (cartItem) => cartItem.id === productDetail.id
+    (cartItem) => cartItem.id === productDetail?.id
   );
   function handelFavoriteProductIcon(product: Product) {
     if (!isFavorite) {
@@ -111,7 +110,7 @@ export default function ProductDetail() {
         }}
       >
         <Box
-          key={productDetail.id}
+          key={productDetail?.id}
           sx={{
             margin: 5,
           }}
@@ -121,24 +120,28 @@ export default function ProductDetail() {
               component="img"
               alt="green iguana"
               height="140"
-              image={productDetail.images[0]}
+              image={productDetail?.images[0]}
             />
 
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {productDetail.title}
+                {productDetail?.title}
               </Typography>
               <Typography gutterBottom variant="body2" component="div">
-                Price: {productDetail.price} $
+                Price: {productDetail?.price} $
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {productDetail.title} belongs to {productDetail.category.name}{" "}
+                {productDetail?.title} belongs to {productDetail?.category.name}{" "}
                 category.
               </Typography>
               <Button
                 size="small"
                 style={{ color: "inherit" }}
-                onClick={() => addToCart(productDetail)}
+                onClick={
+                  productDetail !== null
+                    ? () => addToCart(productDetail)
+                    : () => {}
+                }
               >
                 Add to cart
               </Button>
@@ -152,7 +155,11 @@ export default function ProductDetail() {
 
             <IconButton
               aria-label="add to favorites"
-              onClick={() => handelFavoriteProductIcon(productDetail)}
+              onClick={
+                productDetail !== null
+                  ? () => handelFavoriteProductIcon(productDetail)
+                  : () => {}
+              }
               sx={isFavorite ? { color: "red" } : { color: "inherit" }}
             >
               <FavoriteIcon />

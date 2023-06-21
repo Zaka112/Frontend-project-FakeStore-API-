@@ -24,7 +24,6 @@ export default function CartList() {
   return (
     <Paper sx={{ marginTop: 10, minHeight: 600 }}>
       <Typography variant="h1" component="div">
-        {" "}
         Your Cart
       </Typography>
 

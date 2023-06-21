@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Cart, Product } from "../../types/types";
+import { CartProducts, Product } from "../../types/types";
 
 type CartList = {
-  cartItems: Cart[];
+  cartItems: CartProducts[];
 };
 
 export const initialState: CartList = {
@@ -24,14 +24,14 @@ const cartSlice = createSlice({
       else
      {alert("already in") } // extra feature Some logic here
     },
-    removeFromCart: (state, action: PayloadAction<Cart>) => {
+    removeFromCart: (state, action: PayloadAction<CartProducts>) => {
       const arrayAfterRemoving = state.cartItems.filter(
         (item) => item.id !== action.payload.id
       );
       state.cartItems = arrayAfterRemoving;
     },
 
-    increaseQuantity: (state, action: PayloadAction<Cart>) => {
+    increaseQuantity: (state, action: PayloadAction<CartProducts>) => {
       const productIndex = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
       );
@@ -40,7 +40,7 @@ const cartSlice = createSlice({
         state.cartItems[productIndex].counter++;
       }
     },
-    decreaseQuantity: (state, action: PayloadAction<Cart>) => {
+    decreaseQuantity: (state, action: PayloadAction<CartProducts>) => {
       const productIndex= state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
       );

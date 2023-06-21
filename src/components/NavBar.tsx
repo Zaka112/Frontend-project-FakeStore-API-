@@ -25,9 +25,8 @@ import logoDark from "../assets/logo-dark.png";
 import { RootState } from "../redux/store";
 import switchThemeActions from "../redux/slice/theme";
 
-type Props ={themeMode: "light" | "dark"}
-export default function NavBar( {themeMode}:Props) {
-
+type Props = { themeMode: "light" | "dark" };
+export default function NavBar({ themeMode }: Props) {
   const dispatch = useDispatch();
 
   function toggleThemeHandler() {
@@ -41,7 +40,7 @@ export default function NavBar( {themeMode}:Props) {
   let favoriteItemsCount, cartItemsCount;
   favoriteItemsCount = favoriteItems.length;
   cartItemsCount = cartItems.length;
-  
+
   return (
     <Paper>
       <AppBar>
@@ -57,13 +56,15 @@ export default function NavBar( {themeMode}:Props) {
               </Tooltip>
             </Typography>
           </Link>
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={() => toggleThemeHandler()}
-            color="inherit"
-          >
-            {themeMode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
-          </IconButton>
+          <Tooltip title="Change Theme" arrow placement="right-start">
+            <IconButton
+              sx={{ ml: 1 }}
+              onClick={() => toggleThemeHandler()}
+              color="inherit"
+            >
+              {themeMode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
+          </Tooltip>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>

@@ -8,8 +8,7 @@ export function getProductsData() {
   return async (dispatch: AppDispatch) => {
     const response = await fetch(productsURL);
     const fetchedProducts = await response.json();
-    const data = fetchedProducts.slice(1, 30);
-    dispatch(productActions.getProductsData(data));
+    dispatch(productActions.getProductsData(fetchedProducts));
   };
 }
 
