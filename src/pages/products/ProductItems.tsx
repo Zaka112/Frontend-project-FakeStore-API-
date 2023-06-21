@@ -22,14 +22,13 @@ import { Product } from "../../types/types";
 type Prop = { product: Product };
 
 export default function ProductItems({ product }: Prop) {
-
   const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
-    const favoriteProducts = useSelector(
+  const favoriteProducts = useSelector(
     (state: RootState) => state.products.favorite
   );
-   
+
   const isInCart = cartItems.some((cartItem) => cartItem.id === product.id);
-  
+
   const isFavorite = favoriteProducts.some(
     (favoriteItem) => favoriteItem.id === product.id
   );
@@ -78,6 +77,7 @@ export default function ProductItems({ product }: Prop) {
         theme: "light",
       });
     }
+    
   }
   return (
     <Paper>

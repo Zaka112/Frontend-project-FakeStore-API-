@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Product } from "../../types/types";
 
-type InitialState = {
+type ProductList = {
   products: Product[];
   favorite: Product[];
   isLoading: boolean;
 };
 
-const initialState: InitialState = {
+const initialState: ProductList = {
   products: [],
   favorite: [],
   isLoading: true,
@@ -23,21 +23,21 @@ const productSlice = createSlice({
       state.isLoading = false;
     },
     addFavoriteProducts: (state, action: PayloadAction<Product>): void => {
-      const result = state.favorite.some(
+      const isInFavorite = state.favorite.some(
         (product) => product.id === action.payload.id
       );
 
-      if (!result) {
+      if (!isInFavorite) {
         state.favorite = [...state.favorite, action.payload];
       } else {
         state.favorite = [...state.favorite];
       }
     },
     deleteFavoriteProducts: (state, action: PayloadAction<Product>): void => {
-      const result = state.favorite.filter(
+      const remainingAfterDelete = state.favorite.filter(
         (product) => product.id !== action.payload.id
       );
-      state.favorite = result;
+      state.favorite = remainingAfterDelete;
     },
   },
 });

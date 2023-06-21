@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Cart, Product } from "../../types/types";
 
-type InitialState = {
+type CartList = {
   cartItems: Cart[];
 };
 
-export const initialState: InitialState = {
+export const initialState: CartList = {
   cartItems: [],
 };
 
@@ -21,6 +21,8 @@ const cartSlice = createSlice({
       if (!isIncluded) {
         state.cartItems.push({ ...action.payload, counter: 1 });
       }
+      else
+     {alert("already in") } // extra feature Some logic here
     },
     removeFromCart: (state, action: PayloadAction<Cart>) => {
       const arrayAfterRemoving = state.cartItems.filter(
@@ -39,7 +41,7 @@ const cartSlice = createSlice({
       }
     },
     decreaseQuantity: (state, action: PayloadAction<Cart>) => {
-      const productIndex: number = state.cartItems.findIndex(
+      const productIndex= state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
       );
       if (productIndex !== -1) {

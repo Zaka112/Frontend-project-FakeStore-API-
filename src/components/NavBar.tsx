@@ -27,6 +27,7 @@ import switchThemeActions from "../redux/slice/theme";
 
 type Props ={themeMode: "light" | "dark"}
 export default function NavBar( {themeMode}:Props) {
+
   const dispatch = useDispatch();
 
   function toggleThemeHandler() {

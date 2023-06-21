@@ -9,7 +9,6 @@ import ProductItem from "../products/ProductItems";
 import SearchForm from "../../components/SearchForm";
 
 export default function ProductList() {
-
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(getProductsData());
@@ -18,7 +17,7 @@ export default function ProductList() {
   const products = useSelector((state: RootState) => state.products.products);
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
   const searchedText = useSelector((state: RootState) => state.search.value);
-  
+
   const searchedProduct = products.filter((product) =>
     product.title.toLowerCase().includes(searchedText.toLowerCase())
   );
@@ -37,28 +36,25 @@ export default function ProductList() {
       <Typography variant="h3" component="h3">
         Don't Regret - Just BuY !T
       </Typography>
-      <SearchForm />
+      <SearchForm /> 
       {searchedProduct.length === 0 ? (
-          <Typography variant="h4" component="div" color="inherit" >
-            Sorry, this product is not in our stock.
-          </Typography>
-        ) : (
-      <Grid
-        container
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "1rem",
-          backgroundColor:"white"
-          
-        }}
-      >
-        
-        {  searchedProduct.map((product) => {
+        <Typography variant="h4" component="div" color="inherit">
+          Sorry, this product is not in our stock.
+        </Typography>
+      ) : (
+        <Grid
+          container
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "1rem",
+          }}
+        >
+          {searchedProduct.map((product) => {
             return <ProductItem product={product} key={product.id} />;
           })}
-      
-      </Grid>)}
+        </Grid>
+      )}
     </Paper>
   );
 }

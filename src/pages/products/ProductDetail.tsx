@@ -19,9 +19,9 @@ import { cartListActions } from "../../redux/slice/cart";
 import { productActions } from "../../redux/slice/products";
 
 export default function ProductDetail() {
-
-  const { id } = useParams<{ id: string }>();
   
+  const { id } = useParams<{ id: string }>();
+
   const productDetail = useSelector(
     (state: RootState) => state.productDetail.product
   );
@@ -29,18 +29,20 @@ export default function ProductDetail() {
     (state: RootState) => state.productDetail.isLoading
   );
 
+  const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
+
   const favoriteProducts = useSelector(
     (state: RootState) => state.products.favorite
   );
   const dispatchApp = useDispatch<AppDispatch>();
+
   const productDetailURL = `https://api.escuelajs.co/api/v1/products/${id}?fullText=true`;
+
   const dispatch = useDispatch();
 
   const isFavorite = favoriteProducts.some(
     (favoriteItem) => favoriteItem.id === productDetail.id
   );
-
-  const cartItems = useSelector((state: RootState) => state.cartList.cartItems);
 
   const isInCart = cartItems.some(
     (cartItem) => cartItem.id === productDetail.id
