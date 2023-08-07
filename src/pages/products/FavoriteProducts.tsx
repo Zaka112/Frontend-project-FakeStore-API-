@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 
 import { RootState } from "../../redux/store";
-import { productActions } from "../../redux/slice/products";
+import { productActions } from "../../redux/slices/products";
 import { Product } from "../../types/types";
 
 export default function FavoriteProducts() {
@@ -28,7 +28,7 @@ export default function FavoriteProducts() {
   }
   return (
     <Paper sx={{ minHeight: 600, marginTop: 10 }}>
-      <Typography variant="h2" component="h1">
+      <Typography variant="h3" component="h1">
         Your Favorite Choices
       </Typography>
       {favoriteProducts.length === 0 ? (
@@ -36,7 +36,7 @@ export default function FavoriteProducts() {
           List of Favorite Choices is empty.
           <Tooltip title="Go To Shop" arrow placement="right">
             <Link to="/productlist">
-            <Button>Bring some in!</Button>{" "}
+            <Button variant="contained"> Bring some in!</Button>
           </Link></Tooltip>
         </Typography>
       ) : (

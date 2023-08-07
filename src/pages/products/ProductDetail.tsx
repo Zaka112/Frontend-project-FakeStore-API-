@@ -14,9 +14,8 @@ import { toast } from "react-toastify";
 import { Product } from "../../types/types";
 import { AppDispatch, RootState } from "../../redux/store";
 import { getProductDetailData } from "../../redux/thunk/products";
-import background from "../../assets/bg.svg";
-import { cartListActions } from "../../redux/slice/cart";
-import { productActions } from "../../redux/slice/products";
+import { cartListActions } from "../../redux/slices/cart";
+import { productActions } from "../../redux/slices/products";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
@@ -106,8 +105,8 @@ export default function ProductDetail() {
           display: "flex",
           marginTop: 5,
           justifyContent: "center",
-          backgroundImage: `url(${background})`,
-        }}
+          minHeight:700
+         }}
       >
         <Box
           key={productDetail?.id}

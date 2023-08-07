@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 
-import { productActions } from "../redux/slice/products";
+import { productActions } from "../redux/slices/products";
 
 export default function SortProducts() {
   const [sorting, setSorting] = useState("");

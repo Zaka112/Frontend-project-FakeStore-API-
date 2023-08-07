@@ -19,11 +19,11 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import { useDispatch, useSelector } from "react-redux";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-
 import logoLight from "../assets/logo-light.png";
 import logoDark from "../assets/logo-dark.png";
 import { RootState } from "../redux/store";
-import switchThemeActions from "../redux/slice/theme";
+import switchThemeActions from "../redux/slices/theme";
+
 
 type Props = { themeMode: "light" | "dark" };
 export default function NavBar({ themeMode }: Props) {
@@ -42,13 +42,14 @@ export default function NavBar({ themeMode }: Props) {
   cartItemsCount = cartItems.length;
 
   return (
-    <Paper>
+    <Paper sx={{ display: { xs: "none", md: "flex"}, justifyContent:"space-around" }}>
       <AppBar>
         <Toolbar>
           <Link to="/" style={{ color: "inherit" }}>
             <Typography variant="h4" component="div">
               <Tooltip title="Go to Home" arrow placement="right-start">
-                <img
+
+                <img className="fade color grow  shrink circle rotate threed swing border"
                   src={themeMode === "dark" ? logoLight : logoDark}
                   width={50}
                   alt="Logo"
@@ -65,7 +66,7 @@ export default function NavBar({ themeMode }: Props) {
               {themeMode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
           </Tooltip>
-
+          
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>

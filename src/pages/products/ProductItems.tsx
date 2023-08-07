@@ -14,8 +14,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { productActions } from "../../redux/slice/products";
-import { cartListActions } from "../../redux/slice/cart";
+import { productActions } from "../../redux/slices/products";
+import { cartListActions } from "../../redux/slices/cart";
 import { RootState } from "../../redux/store";
 import { Product } from "../../types/types";
 
@@ -81,7 +81,7 @@ export default function ProductItems({ product }: Prop) {
   }
   return (
     <Paper>
-      <Card sx={{ maxWidth: 300, minHeight: 320 }}>
+      <Card sx={{ maxWidth: "100%", minHeight: 320 }}>
         <Link
           to={`/products/productdetail/${product.id}`}
           style={{ textDecoration: "none", color: "white" }}

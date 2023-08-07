@@ -14,6 +14,6 @@ export type Product = {
     updatedAt: string;
   };
 };
-export type CartProducts = Product & {
+export type CartProduct = Product & {
   counter: number;
 };

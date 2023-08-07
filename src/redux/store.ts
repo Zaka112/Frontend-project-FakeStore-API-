@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import productReducer from "./slice/products";
-import productDetailReducer from "./slice/productDetail";
-import cartReducer from "./slice/cart";
-import searchReducer from "./slice/search";
-import { themeReducer } from "./slice/theme";
+import productReducer from "./slices/products";
+import productDetailReducer from "./slices/productDetail";
+import cartReducer from "./slices/cart";
+import searchReducer from "./slices/search";
+import { themeReducer } from "./slices/theme";
 
 export const store = configureStore({
   reducer: {

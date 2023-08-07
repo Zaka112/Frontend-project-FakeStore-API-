@@ -1,6 +1,6 @@
-import { productActions } from "../slice/products";
+import { productActions } from "../slices/products";
 import { AppDispatch } from "../store";
-import { productDetailActions } from "../slice/productDetail";
+import { productDetailActions } from "../slices/productDetail";
 
 const productsURL = "https://api.escuelajs.co/api/v1/products";
 

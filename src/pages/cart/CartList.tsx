@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 
 import CartItems from "./CartItems";
 import { RootState } from "../../redux/store";
-import { cartListActions } from "../../redux/slice/cart";
+import { cartListActions } from "../../redux/slices/cart";
+import { constants } from "buffer";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cartList.cartItems);
@@ -22,13 +23,13 @@ export default function CartList() {
   }, 0);
 
   return (
-    <Paper sx={{ marginTop: 10, minHeight: 600 }}>
-      <Typography variant="h1" component="div">
+    <Paper sx={{ marginTop: 10, minHeight: 700 }}>
+      <Typography variant="h3" component="div">
         Your Cart
       </Typography>
 
       {cartList.length === 0 ? (
-        <Typography variant="h2" component="div">
+        <Typography variant="h4" component="div">
           No item in the cart!
         </Typography>
       ) : (
@@ -38,7 +39,7 @@ export default function CartList() {
       )}
       {cartList.length === 0 ? (
         <Link to="/productlist" style={{ color: "inherit" }}>
-          <Button size="large" sx={{ color: "inherit" }}>
+          <Button size="large" variant="contained">
             Back to Shoping
           </Button>{" "}
         </Link>
@@ -53,7 +54,7 @@ export default function CartList() {
         </Paper>
       )}
       <br />
-      <Typography variant="h3" component="div">
+      <Typography variant="h4" component="div">
         {" "}
         Total Amount: $ {total.toLocaleString()}
       </Typography>
@@ -83,6 +84,8 @@ export default function CartList() {
           Remove Cart
         </Button>
       ) : null}
+      
     </Paper>
+    
   );
 }

@@ -7,10 +7,10 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { cartListActions } from "../../redux/slice/cart";
-import { CartProducts } from "../../types/types";
+import { cartListActions } from "../../redux/slices/cart";
+import { CartProduct } from "../../types/types";
 
-type Prop = { cartItem: CartProducts };
+type Prop = { cartItem: CartProduct };
 
 export default function CartItems({ cartItem }: Prop) {
   const dispatch = useDispatch();

@@ -11,9 +11,9 @@ import About from "./pages/About";
 import ProductDetail from "./pages/products/ProductDetail";
 import FavoriteProducts from "./pages/products/FavoriteProducts";
 import CartList from "./pages/cart/CartList";
-import background from "./assets/bg.svg";
 import Footer from "./components/Footer";
 import { RootState } from "./redux/store";
+import NavLinks from "./components/NavLinks";
 
 function App() {
   const themeMode = useSelector((state: RootState) => state.theme.theme);
@@ -31,9 +31,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper className="App" style={{ background: `url(${background})` }}>
+      <Paper className="App">
+     
         <NavBar themeMode={themeMode} />
-
+        
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/productlist" element={<ProductList />}></Route>
