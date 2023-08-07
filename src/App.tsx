@@ -13,7 +13,6 @@ import FavoriteProducts from "./pages/products/FavoriteProducts";
 import CartList from "./pages/cart/CartList";
 import Footer from "./components/Footer";
 import { RootState } from "./redux/store";
-import NavLinks from "./components/NavLinks";
 
 function App() {
   const themeMode = useSelector((state: RootState) => state.theme.theme);
