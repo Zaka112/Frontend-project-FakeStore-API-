@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import CartItems from "./CartItems";
 import { RootState } from "../../redux/store";
 import { cartListActions } from "../../redux/slices/cart";
-import { constants } from "buffer";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cartList.cartItems);
