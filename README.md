@@ -1,5 +1,6 @@
 # FRONT END PROJECT
 
+## Deploy Link (https://frontend-react-redux.netlify.app/)
 The front end project uses React with TypeScript and Redux. Completing all requirement, you will get 20 points. Good luck and HAVE FUN !!!
 
 ### How to run project
@@ -40,23 +41,3 @@ ONLY DO THIS PART WHEN YOU HAVE COMPLETED THE REQUIREMENTS PART
 1. Sorting by product name/price
 2. Change theme
 
-### Screenshots
-
-1. Home page
-   ![](./screenshots/homePage.png)
-
-2. Footer
-
-![](./screenshots/footer.png)
-
-3. Product list
-   ![](./screenshots/productList.png)
-
-4. Product detail
-   ![](./screenshots/productDetail.png)
-
-5. Wish list
-   ![](./screenshots/wishList.png)
-
-6. Cart
-   ![](./screenshots/cart.png)
