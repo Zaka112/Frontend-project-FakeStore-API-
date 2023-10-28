@@ -31,9 +31,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Paper className="App">
-     
         <NavBar themeMode={themeMode} />
-        
+
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/productlist" element={<ProductList />}></Route>

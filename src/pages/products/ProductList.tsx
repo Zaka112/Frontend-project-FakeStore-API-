@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Grid, Pagination, Paper, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  Grid,
+  Pagination,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 import { AppDispatch, RootState } from "../../redux/store";
 import { getProductsData } from "../../redux/thunk/products";
@@ -71,15 +77,12 @@ export default function ProductList() {
             return <ProductItem product={product} key={product.id} />;
           })}
         </Grid>
-        
       )}
       <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handlePageChange}
-        />
+        count={totalPages}
+        page={currentPage}
+        onChange={handlePageChange}
+      />
     </Paper>
-    
   );
-  
 }

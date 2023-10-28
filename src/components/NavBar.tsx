@@ -24,7 +24,6 @@ import logoDark from "../assets/logo-dark.png";
 import { RootState } from "../redux/store";
 import switchThemeActions from "../redux/slices/theme";
 
-
 type Props = { themeMode: "light" | "dark" };
 export default function NavBar({ themeMode }: Props) {
   const dispatch = useDispatch();
@@ -42,14 +41,18 @@ export default function NavBar({ themeMode }: Props) {
   cartItemsCount = cartItems.length;
 
   return (
-    <Paper sx={{ display: { xs: "none", md: "flex"}, justifyContent:"space-around" }}>
+    <Paper
+      sx={{
+        display: { md: "flex" },
+        justifyContent: "space-around",
+      }}
+    >
       <AppBar>
         <Toolbar>
           <Link to="/" style={{ color: "inherit" }}>
             <Typography variant="h4" component="div">
               <Tooltip title="Go to Home" arrow placement="right-start">
-
-                <img className="fade color grow  shrink circle rotate threed swing border"
+                <img
                   src={themeMode === "dark" ? logoLight : logoDark}
                   width={50}
                   alt="Logo"
@@ -66,9 +69,9 @@ export default function NavBar({ themeMode }: Props) {
               {themeMode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
           </Tooltip>
-          
+
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { md: "flex" } }}>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <IconButton size="large" aria-label="home" color="inherit">
                 <Tooltip title="Home" arrow>
