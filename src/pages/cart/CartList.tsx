@@ -44,10 +44,10 @@ export default function CartList() {
         </Link>
       ) : (
         <Paper>
-          <Link to="/productlist" style={{ color: "inherit" }}>
+          <Link to="/productlist">
             {" "}
-            <Button size="large" sx={{ color: "inherit" }}>
-              Add more items to the cart
+            <Button size="large" variant="contained" sx={{ color: "inherit" }}>
+              + Add more items
             </Button>{" "}
           </Link>
         </Paper>
@@ -60,10 +60,11 @@ export default function CartList() {
 
       {cartList.length > 0 ? (
         <Button
-          sx={{ color: "inherit" }}
+          variant="contained"
+          sx={{ color: "green" }}
           onClick={() => {
             checkOut();
-            toast.success(` Thanks for Shoping here. Come back soon`, {
+            toast.success(` Thanks for Shoping here. Come back soon.`, {
               position: "top-left",
               autoClose: 5000,
               hideProgressBar: false,
@@ -79,12 +80,14 @@ export default function CartList() {
         </Button>
       ) : null}
       {cartList.length > 0 ? (
-        <Button onClick={() => checkOut()} sx={{ color: "inherit" }}>
+        <Button
+          variant="contained"
+          onClick={() => checkOut()}
+          sx={{ color: "red" }}
+        >
           Remove Cart
         </Button>
       ) : null}
-      
     </Paper>
-    
   );
 }

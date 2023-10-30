@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { cartListActions } from "../../redux/slices/cart";
 import { CartProduct } from "../../types/types";
+import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import { Box, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 type Prop = { cartItem: CartProduct };
 
@@ -60,19 +60,21 @@ export default function CartItems({ cartItem }: Prop) {
         >
           <IconButton onClick={increaseItem}>
             <Tooltip title="increase quantity" arrow placement="top">
-              <KeyboardArrowUpIcon />
+              <AddCircleOutlinedIcon />
             </Tooltip>
           </IconButton>
-          <Typography> {cartItem?.counter} </Typography>
+          <Typography sx={{ fontWeight: "bold" }}>
+            {cartItem?.counter}
+          </Typography>
           <IconButton onClick={decreaseItem}>
             <Tooltip title="decrease quantity" arrow placement="bottom">
-              <KeyboardArrowDownIcon />
+              <RemoveCircleOutlinedIcon />
             </Tooltip>
           </IconButton>
         </Box>
         <IconButton onClick={removeItem}>
           <Tooltip title="remove product" arrow placement="bottom">
-            <DeleteForeverIcon />
+            <DeleteForeverIcon sx={{ color: "red" }} />
           </Tooltip>
         </IconButton>
       </Box>
